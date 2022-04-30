@@ -8,7 +8,7 @@ def pipelineParams = [:]
 
         
             def TEST_STRING = "${pipelineParams.TEST_STRING}"
-	    def BRANCH_NAME = "${pipelineParams.BRANCH_NAME}"
+	    def BRANCH_NAME = "${env.BRANCH_NAME}"
             def TEST_INT = "${pipelineParams.TEST_INT}"
             def TEST_ARR = "${pipelineParams.TEST_ARR}"
             def TEST_KEY_VALUE = "${pipelineParams.TEST_KEY_VALUE}"
