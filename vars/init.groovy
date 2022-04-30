@@ -6,12 +6,12 @@ def pipelineParams = [:]
 	body.delegate = pipelineParams
 	body()
 
-        environment {
-            TEST_STRING = "${pipelineParams.TEST_STRING}"
-            TEST_INT = "${pipelineParams.TEST_INT}"
-            TEST_ARR = "${pipelineParams.TEST_ARR}"
-            TEST_KEY_VALUE = "${pipelineParams.TEST_KEY_VALUE}"
-            TEST_KEY_VALUE_ONE = "${pipelineParams.TEST_KEY_VALUE.get('key1')}"
+        
+            def TEST_STRING = "${pipelineParams.TEST_STRING}"
+            def TEST_INT = "${pipelineParams.TEST_INT}"
+            def TEST_ARR = "${pipelineParams.TEST_ARR}"
+            def TEST_KEY_VALUE = "${pipelineParams.TEST_KEY_VALUE}"
+            def TEST_KEY_VALUE_ONE = "${pipelineParams.TEST_KEY_VALUE.get('key1')}"
 //             BUILD_VERSION = "${pipelineParams.projectVersion}-j${BUILD_NUMBER}"
 //             PROJECT_PATH = "${pipelineParams.projectBase}"
 //             PROJECT_NAME_RAW = "${pipelineParams.projectName}"
@@ -27,8 +27,7 @@ def pipelineParams = [:]
 //             skipBuildPlugins = "${pipelineParams.skipBuildPlugins}"
 //             skipBuildTheme = "${pipelineParams.skipBuildTheme}"
 //             skipSeleniumTests = "${pipelineParams.skipSeleniumTests}"
-            //JENKINSPASS = credentials('JENKINSPASS')
-        }
+       
 
 pipeline {
     agent any
