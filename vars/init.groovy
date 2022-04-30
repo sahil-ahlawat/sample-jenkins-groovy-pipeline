@@ -1,6 +1,6 @@
 #!groovy
 
-def call(body) {
+def call(Map input) {
 
 pipeline {
     agent any
