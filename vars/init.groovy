@@ -1,6 +1,34 @@
 #!groovy
 
-def call(Map input) {
+def call(body) {
+def pipelineParams = [:]
+	body.resolveStrategy = Closure.DELEGATE_FIRST
+	body.delegate = pipelineParams
+	body()
+
+        environment {
+            TEST_STRING = "${pipelineParams.TEST_STRING}"
+            TEST_INT = "${pipelineParams.TEST_INT}"
+            TEST_ARR = "${pipelineParams.TEST_ARR}"
+            TEST_KEY_VALUE = "${pipelineParams.TEST_KEY_VALUE}"
+            TEST_KEY_VALUE_ONE = "${pipelineParams.TEST_KEY_VALUE.get('key1')}"
+//             BUILD_VERSION = "${pipelineParams.projectVersion}-j${BUILD_NUMBER}"
+//             PROJECT_PATH = "${pipelineParams.projectBase}"
+//             PROJECT_NAME_RAW = "${pipelineParams.projectName}"
+//             PROJECT_NAME = "${pipelineParams.projectName.get(env.BRANCH_NAME)}"
+//             THEME_NAME = "${pipelineParams.themename}"
+//             WEBSITE_NAME = "${pipelineParams.websitename}"
+//             TARGET_HOST = "${pipelineParams.projectName.get(env.BRANCH_NAME)}@${pipelineParams.projectName.get(env.BRANCH_NAME)}.ssh.wpengine.net"
+//             TARGET_SITE = "${pipelineParams.projectName.get(env.BRANCH_NAME)}.wpengine.com"
+//             DOMAIN = "${pipelineParams.sites.get(env.BRANCH_NAME)}"
+//             OLDDOMAIN = "${pipelineParams.domainstoreplace.get(env.BRANCH_NAME)}"
+//             skipWebsiteCreation = "${pipelineParams.skipWebsiteCreation}"
+//             quitDebugFor = "${pipelineParams.quitDebugFor}"
+//             skipBuildPlugins = "${pipelineParams.skipBuildPlugins}"
+//             skipBuildTheme = "${pipelineParams.skipBuildTheme}"
+//             skipSeleniumTests = "${pipelineParams.skipSeleniumTests}"
+            //JENKINSPASS = credentials('JENKINSPASS')
+        }
 
 pipeline {
     agent any
@@ -16,6 +44,11 @@ pipeline {
         stage('Initialize') {
             steps {
                 echo 'Initializing..'
+                echo "${TEST_STRING}"
+                echo "${TEST_INT}"
+                echo "${TEST_ARR}"
+                echo "${TEST_KEY_VALUE}"
+                echo "${TEST_KEY_VALUE_ONE}"
             }
         }
         stage('Build') {
